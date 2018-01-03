@@ -20,18 +20,19 @@ import { REVIEW_PREVIEW_COUNT } from './constants';
  * @param {Function} subscribe The subscribe function.
  */
 export default function product(subscribe) {
-  const writeReviewRouteDidEnter$ = routeDidEnter(ITEM_PATH).filter(
+  const writeReviewRouteDidEnter$ = routeDidEnter(ITEM_PATH).filter((
     ({ pathname }) => pathname.endsWith('write_review') || pathname.endsWith('write_review/')
-  );
+  ));
 
-  const reviewsRouteDidEnter$ = routeDidEnter(ITEM_PATH).filter(
+  const reviewsRouteDidEnter$ = routeDidEnter(ITEM_PATH).filter((
     ({ pathname }) => pathname.endsWith('reviews') || pathname.endsWith('reviews/')
-  );
+  ));
 
-  const productRouteDidEnter$ = routeDidEnter(ITEM_PATH).filter(
-    ({ pathname }) => !(pathname.endsWith('reviews') || pathname.endsWith('reviews/')
-      || pathname.endsWith('write_review') || pathname.endsWith('write_review/'))
-  );
+  const productRouteDidEnter$ = routeDidEnter(ITEM_PATH).filter((
+    ({ pathname, prevPathname }) => !(pathname.endsWith('reviews') || pathname.endsWith('reviews/')
+      || pathname.endsWith('write_review') || pathname.endsWith('write_review/')
+      || pathname.includes('gallery') || prevPathname.includes('gallery'))
+  ));
 
   /**
    * Gets trigger on entering any product route.
@@ -61,6 +62,7 @@ export default function product(subscribe) {
   subscribe(productRouteDidEnter$, ({ dispatch, getState }) => {
     dispatch(getProductData());
     dispatch(enableNavigatorSearch());
+
     if (hasReviews) {
       const baseProductId = getCurrentBaseProductId(getState());
       dispatch(getProductReviews(baseProductId, REVIEW_PREVIEW_COUNT));
