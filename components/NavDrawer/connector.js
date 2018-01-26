@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { getCartProductDisplayCount } from '@shopgate/pwa-common-commerce/cart/selectors';
 import logout from '@shopgate/pwa-common/actions/user/logout';
 import { isUserLoggedIn } from '@shopgate/pwa-common/selectors/user';
+import appConfig from '@shopgate/pwa-common/helpers/config';
 import toggleNavDrawer from 'Components/Navigator/actions/toggleNavDrawer';
 import { getMenuById } from './selectors';
 import { QUICKLINKS_MENU } from './constants';
@@ -25,6 +26,7 @@ const mapStateToProps = state => ({
   },
   navDrawerActive: state.navigator.navDrawerActive,
   user: isUserLoggedIn(state) ? state.user.data : null,
+  scannerAvailable: !appConfig.hasNoScanner,
 });
 
 /**

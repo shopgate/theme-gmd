@@ -101,7 +101,8 @@
     "terms": "Terms",
     "privacy": "Privacy policy",
     "welcome_message": "Welcome {name}",
-    "logout": "Sign out"
+    "logout": "Sign out",
+    "scanner": "QR Scanner"
   },
   "reviews": {
     "rating": "Rating",

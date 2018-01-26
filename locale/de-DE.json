@@ -101,7 +101,8 @@
     "terms": "AGB",
     "privacy": "Datenschutz",
     "welcome_message": "Hallo {name}",
-    "logout": "Abmelden"
+    "logout": "Abmelden",
+    "scanner": "QR Scanner"
   },
   "reviews": {
     "rating": "Bewertung",
