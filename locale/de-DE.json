@@ -102,7 +102,7 @@
     "privacy": "Datenschutz",
     "welcome_message": "Hallo {name}",
     "logout": "Abmelden",
-    "scanner": "QR Scanner"
+    "scanner": "Barcode Scanner"
   },
   "reviews": {
     "rating": "Bewertung",
