@@ -10,6 +10,7 @@ import commonApp from '@shopgate/pwa-common/subscriptions/app';
 import commonUser from '@shopgate/pwa-common/subscriptions/user';
 import commonHistory from '@shopgate/pwa-common/subscriptions/history';
 import commonMenu from '@shopgate/pwa-common/subscriptions/menu';
+import commonScanner from '@shopgate/pwa-common/subscriptions/scanner';
 // PWA Common Commerce
 import commerceCart from '@shopgate/pwa-common-commerce/cart/subscriptions';
 import commerceCategory from '@shopgate/pwa-common-commerce/category/subscriptions';
@@ -49,6 +50,7 @@ const subscriptions = [
   commonHistory,
   commonUser,
   commonMenu,
+  commonScanner,
   // Common Commerce subscribers.
   commerceCart,
   commerceCategory,

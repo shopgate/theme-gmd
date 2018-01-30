@@ -8,7 +8,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import I18n from '@shopgate/pwa-common/components/I18n';
-import { INDEX_PATH, PAGE_PATH } from '@shopgate/pwa-common/constants/RoutePaths';
+import {
+  INDEX_PATH,
+  PAGE_PATH,
+  SCANNER_PATH,
+} from '@shopgate/pwa-common/constants/RoutePaths';
 import { CATEGORY_PATH } from '@shopgate/pwa-common-commerce/category/constants';
 import { ORDERS_PATH } from '@shopgate/pwa-common-commerce/orders/constants';
 import { CART_PATH } from '@shopgate/pwa-common-commerce/cart/constants';
@@ -44,6 +48,7 @@ class NavDrawer extends Component {
     highlightFavorites: PropTypes.bool,
     logout: PropTypes.func,
     navDrawerActive: PropTypes.bool,
+    scannerAvailable: PropTypes.bool,
     user: PropTypes.shape(),
   };
 
@@ -55,6 +60,7 @@ class NavDrawer extends Component {
     logout: () => {},
     navDrawerActive: false,
     user: null,
+    scannerAvailable: true,
   };
 
   /**
@@ -114,6 +120,7 @@ class NavDrawer extends Component {
       user,
       cartProductCount,
       navDrawerActive,
+      scannerAvailable,
       logout,
     } = this.props;
 
@@ -155,6 +162,12 @@ class NavDrawer extends Component {
         >
           <I18n.Text string="navigation.cart" />
         </CartItem>
+
+        { scannerAvailable && (
+          <Item href={SCANNER_PATH} close={this.handleClose}>
+            <I18n.Text string="navigation.scanner" />
+          </Item>
+        )}
 
         <Divider close={this.handleClose} />
 

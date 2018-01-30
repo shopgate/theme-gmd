@@ -108,7 +108,8 @@
     "terms": "AGB",
     "privacy": "Datenschutz",
     "welcome_message": "Hallo {name}",
-    "logout": "Abmelden"
+    "logout": "Abmelden",
+    "scanner": "Barcode Scanner"
   },
   "reviews": {
     "rating": "Bewertung",

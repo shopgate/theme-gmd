@@ -108,7 +108,8 @@
     "terms": "Terms",
     "privacy": "Privacy policy",
     "welcome_message": "Welcome {name}",
-    "logout": "Sign out"
+    "logout": "Sign out",
+    "scanner": "Barcode Scanner"
   },
   "reviews": {
     "rating": "Rating",
