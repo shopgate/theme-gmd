@@ -5,7 +5,17 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-// eslint-disable-next-line import/no-dynamic-require
-const templateTranslations = require(`./${process.env.LANG}.json`);
+// The fallback language if no file is available for the designated language.
+const defaultLanguage = 'en-US';
+const availableLanguages = [
+  'de-DE',
+  'en-US',
+];
 
-export default templateTranslations;
+// Determine the correct language file name
+const filename = availableLanguages.includes(process.env.LANG) ? process.env.LANG : defaultLanguage;
+
+// eslint-disable-next-line import/no-dynamic-require
+const translations = require(`./${filename}.json`);
+
+export default translations;
