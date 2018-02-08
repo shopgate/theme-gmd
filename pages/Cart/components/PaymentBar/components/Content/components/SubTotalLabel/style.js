@@ -8,7 +8,7 @@
 import { css } from 'glamor';
 import colors from 'Styles/colors';
 
-export default css({
+const disabled = css({
   color: `${colors.shade4}`,
 }).toString();
 
@@ -19,6 +19,5 @@ const text = css({
 
 export default {
   disabled,
-  totalLabel,
   text,
 };
