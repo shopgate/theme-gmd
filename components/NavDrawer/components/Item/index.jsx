@@ -8,7 +8,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { history } from '@shopgate/pwa-common/helpers/router';
 import ParsedLink from '@shopgate/pwa-common/components/Router/helpers/parsed-link';
 import Grid from '@shopgate/pwa-common/components/Grid';
 import Ripple from 'Components/Ripple';
@@ -24,18 +23,16 @@ const CLICK_DELAY = 250;
  * @param {Function} props.close A callback.
  */
 const handleClick = ({ onClick, href, close }) => {
-  setTimeout(() => {
-    // Perform onClick callback
-    onClick();
+  // Perform onClick callback
+  onClick();
 
-    if (href) {
-      // Open parsed link
-      new ParsedLink(href).open(history);
-    }
+  if (href) {
+    // Open parsed link
+    new ParsedLink(href).open();
+  }
 
-    // Call close callback from drawer
-    close();
-  }, CLICK_DELAY);
+  // Call close callback from drawer
+  close();
 };
 /**
  * The Item component.
@@ -57,9 +54,11 @@ const Item = (props) => {
       aria-hidden
       className={className}
       data-test-id="NavDrawerLink"
-      onClick={() => handleClick(props)}
     >
-      <Ripple fill>
+      <Ripple
+        fill
+        onComplete={() => handleClick(props)}
+      >
         <Grid className={styles.grid}>
           <Grid.Item>
             <div className={styles.icon}>
