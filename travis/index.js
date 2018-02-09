@@ -27,6 +27,10 @@ function main() {
       return Git.checkoutDependencies(currentBranch);
     })
     .then(() => {
+      logger.log('Fixing npm known issues when dependencies are linked.');
+      return Npm.fixKnownIssuesWhenLinked();
+    })
+    .then(() => {
       logger.log('Checking out finished.');
       return Npm.linkDependencies();
     })

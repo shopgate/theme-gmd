@@ -18,6 +18,17 @@ const logger = new TaggedLogger('Travis before - NPM');
  */
 class Npm extends Cmd {
   /**
+   * Fixes known issues when dependencies are linked.
+   * @returns {Promise}
+   */
+  static fixKnownIssuesWhenLinked() {
+    return new Promise((resolve, reject) => {
+      this.runCommand('cd ~ && npm i babel-plugin-module-resolver@3.0.0-beta.0 --save-exact')
+        .then(() => resolve())
+        .catch(err => reject(err));
+    });
+  }
+  /**
    * Links dependency.
    * @param {string} name Dependency name.
    * @returns {Promise}

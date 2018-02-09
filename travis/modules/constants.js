@@ -16,7 +16,7 @@ const pwaNames = [
 /**
  * Dependencies folder name.
  */
-const dependenciesFolderName = 'travis-tmp-modules';
+const dependenciesFolderName = '~/travis-tmp-modules';
 
 /**
  * Gets dependency's folder name.
