@@ -13,13 +13,21 @@ const TaggedLogger = require('./modules/TaggedLogger');
 function main() {
   const logger = new TaggedLogger('Travis before script');
   logger.log('Start');
+  let currentBranch;
   Git.getBranch()
     .then((branch) => {
+      currentBranch = branch;
       logger.log(`Current branch is: ${branch}`);
+      return Git.cloneDependencies();
     })
-    .catch((err) => {
-      logger.error(err);
-    });
+    .then(() => {
+      logger.log('Dependencies cloned.');
+      return Git.checkoutDependencies(currentBranch);
+    })
+    .then(() => {
+      logger.log('Checking out finished.');
+    })
+    .catch(err => logger.error(err));
 }
 
 main();
