@@ -14,6 +14,7 @@ const {
 } = require('./constants');
 
 const logger = new TaggedLogger('Travis before - GIT');
+
 /**
  * Handles git operations.
  */
