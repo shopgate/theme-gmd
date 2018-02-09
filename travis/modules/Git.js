@@ -18,9 +18,9 @@ class Git extends Cmd {
   static shouldGetTravisBranch(branchName) {
     return new Promise((resolve, reject) => {
       if (branchName.indexOf('HEAD') === -1) {
-        return resolve();
+        return reject();
       }
-      return reject();
+      return resolve();
     });
   }
 
