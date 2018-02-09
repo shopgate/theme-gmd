@@ -17,9 +17,10 @@ class Cmd {
    */
   static runCommand(command) {
     return new Promise((resolve, reject) => {
-      cmd.get(command, (err, data, stdErr) => {
-        if (err || stdErr) {
-          return reject(err || stdErr);
+      cmd.get(command, (err, data) => {
+        // The stdErr is ignored since npm and git uses it to send warnings and infos.
+        if (err) {
+          return reject(err);
         }
         return resolve(data);
       });

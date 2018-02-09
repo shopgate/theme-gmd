@@ -7,28 +7,17 @@
 const Promise = require('bluebird');
 const Cmd = require('./Cmd');
 const TaggedLogger = require('./TaggedLogger');
+const {
+  dependenciesFolderName,
+  getDependencyFolderName,
+  pwaNames,
+} = require('./constants');
 
 const logger = new TaggedLogger('Travis before - GIT');
 /**
  * Handles git operations.
  */
 class Git extends Cmd {
-  /**
-   * Dependencies folder name.
-   * @returns {string}
-   */
-  static get dependenciesFolderName() {
-    return 'travis-tmp-modules';
-  }
-
-  /**
-   * Gets dependency's folder name.
-   * @param {string} name Repository's name.
-   * @returns {string}
-   */
-  static getDependencyFolderName(name) {
-    return `${this.dependenciesFolderName}/${name}`;
-  }
   /**
    * Checks if branch which is fetched from git looks correct.
    * @param {string} branchName Branch name from git.
@@ -80,7 +69,7 @@ class Git extends Cmd {
    * @returns {Promise}
    */
   static prepareDependenciesFolder() {
-    return this.runCommand(`mkdir ${this.dependenciesFolderName}`);
+    return this.runCommand(`mkdir ${dependenciesFolderName}`);
   }
 
   /**
@@ -91,7 +80,7 @@ class Git extends Cmd {
   static cloneDependency(name) {
     return new Promise((resolve, reject) => {
       const githubUrl = `https://github.com/shopgate/${name}.git`;
-      const folderName = this.getDependencyFolderName(name);
+      const folderName = getDependencyFolderName(name);
       // Git clone pipes to stdErr, -q to avoid it.
       const cmd = `mkdir ${folderName} && git clone -q ${githubUrl} ${folderName}/`;
       this.runCommand(cmd)
@@ -109,11 +98,7 @@ class Git extends Cmd {
   static cloneDependencies() {
     return new Promise((resolve, reject) => {
       this.prepareDependenciesFolder()
-        .then(() => Promise.all([
-          this.cloneDependency('pwa-core'),
-          this.cloneDependency('pwa-common'),
-          this.cloneDependency('pwa-common-commerce'),
-        ]))
+        .then(() => Promise.each(pwaNames, name => this.cloneDependency(name)))
         .then(() => resolve())
         .catch(err => reject(err));
     });
@@ -127,11 +112,11 @@ class Git extends Cmd {
    */
   static checkoutDependency(repoName, branchName) {
     return new Promise((resolve, reject) => {
-      const folderName = this.getDependencyFolderName(repoName);
+      const folderName = getDependencyFolderName(repoName);
       this.runCommand(`cd ${folderName} && echo $( git branch -r | grep origin/${branchName}) 0`)
         .then((data) => {
           if (data.trim() === '0') {
-            logger.log(`${repoName} has no branch "${branchName}"`);
+            logger.log(`${repoName} has no "${branchName}" branch.`);
             return new Promise(res => res());
           }
           logger.log(`Checking out ${repoName}/${branchName}`);
@@ -148,11 +133,7 @@ class Git extends Cmd {
    * @returns {Promise}
    */
   static checkoutDependencies(branchName) {
-    return Promise.all([
-      this.checkoutDependency('pwa-core', branchName),
-      this.checkoutDependency('pwa-common', branchName),
-      this.checkoutDependency('pwa-common-commerce', branchName),
-    ]);
+    return Promise.each(pwaNames, name => this.checkoutDependency(name, branchName));
   }
 }
 

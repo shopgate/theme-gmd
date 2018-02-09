@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 const Git = require('./modules/Git');
+const Npm = require('./modules/Npm');
 const TaggedLogger = require('./modules/TaggedLogger');
 
 /**
@@ -17,6 +18,7 @@ function main() {
   Git.getBranch()
     .then((branch) => {
       currentBranch = branch;
+      // TODO abort if master.
       logger.log(`Current branch is: ${branch}`);
       return Git.cloneDependencies();
     })
@@ -26,8 +28,14 @@ function main() {
     })
     .then(() => {
       logger.log('Checking out finished.');
+      return Npm.linkDependencies();
     })
-    .catch(err => logger.error(err));
+    .then(() => {
+      logger.log('Dependencies linked. Good bye.');
+    })
+    .catch((err) => {
+      logger.error('Error occured.', err);
+    });
 }
 
 main();
