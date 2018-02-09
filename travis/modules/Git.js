@@ -48,7 +48,7 @@ class Git extends Cmd {
       let branchFromGit;
       this.runCommand('git branch | grep \\*')
         .then((data) => {
-          branchFromGit = data.replace('* ', '');
+          branchFromGit = data.replace('* ', '').trim();
           return this.shouldGetTravisBranch(branchFromGit);
         })
         .then(() => this.getTravisBranch())

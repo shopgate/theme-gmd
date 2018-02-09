@@ -7,6 +7,21 @@
 const Git = require('./modules/Git');
 const Npm = require('./modules/Npm');
 const TaggedLogger = require('./modules/TaggedLogger');
+const ErrorAborted = require('./modules/ErrorAborted');
+
+/**
+ * Checks is branch should be linked.
+ * @param {string} name - Branch name.
+ * @returns {Promise}
+ */
+const shouldBranchBeLinked = name => (
+  new Promise((resolve, reject) => {
+    if (name === 'master') {
+      return reject(new ErrorAborted('Master should not be linked'));
+    }
+    return resolve();
+  })
+);
 
 /**
  * Main function.
@@ -18,10 +33,10 @@ function main() {
   Git.getBranch()
     .then((branch) => {
       currentBranch = branch;
-      // TODO abort if master.
       logger.log(`Current branch is: ${branch}`);
-      return Git.cloneDependencies();
+      return shouldBranchBeLinked(branch);
     })
+    .then(() => Git.cloneDependencies())
     .then(() => {
       logger.log('Dependencies cloned.');
       return Git.checkoutDependencies(currentBranch);
@@ -38,6 +53,10 @@ function main() {
       logger.log('Dependencies linked. Good bye.');
     })
     .catch((err) => {
+      if (err instanceof ErrorAborted) {
+        logger.log('Aborting operation.', err.message);
+        return;
+      }
       logger.error('Error occured.', err);
     });
 }
