@@ -9,7 +9,6 @@ const Cmd = require('./Cmd');
 const TaggedLogger = require('./TaggedLogger');
 const {
   getDependencyFolderName,
-  pwaNames,
 } = require('./constants');
 
 const logger = new TaggedLogger('Travis before - NPM');
@@ -62,13 +61,14 @@ class Npm extends Cmd {
 
   /**
    * Links all dependencies.
+   * @param {Array} repos Repos to be linked.
    * @returns {Promise}
    */
-  static linkDependencies() {
+  static linkDependencies(repos) {
     return new Promise((resolve, reject) => {
       logger.log('Linking dependencies');
-      Promise.each(pwaNames, name => this.createLink(name))
-        .then(() => Promise.each(pwaNames, name => this.initLink(name)))
+      Promise.each(repos, name => this.createLink(name))
+        .then(() => Promise.each(repos, name => this.initLink(name)))
         .then(() => resolve())
         .catch(err => reject(err));
     });

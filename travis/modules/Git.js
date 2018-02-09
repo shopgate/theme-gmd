@@ -117,12 +117,12 @@ class Git extends Cmd {
         .then((data) => {
           if (data.trim() === '0') {
             logger.log(`${repoName} has no "${branchName}" branch.`);
-            return new Promise(res => res());
+            return new Promise(res => res({ repoName, aborted: true }));
           }
           logger.log(`Checking out ${repoName}/${branchName}`);
           return this.runCommand(`cd ${folderName} && git checkout -q ${branchName}`);
         })
-        .then(() => resolve())
+        .then(aborted => resolve({ repoName, aborted }))
         .catch(err => reject(err));
     });
   }
@@ -133,7 +133,11 @@ class Git extends Cmd {
    * @returns {Promise}
    */
   static checkoutDependencies(branchName) {
-    return Promise.each(pwaNames, name => this.checkoutDependency(name, branchName));
+    return new Promise((resolve, reject) => {
+      Promise.all(pwaNames.map(name => this.checkoutDependency(name, branchName)))
+        .then(results => resolve(results))
+        .catch(err => reject(err));
+    });
   }
 }
 

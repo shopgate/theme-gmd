@@ -24,12 +24,28 @@ const shouldBranchBeLinked = name => (
 );
 
 /**
+ * Sanitizes checkout result and decides if to continue.
+ * @param {Array} checkoutResults Result from checkout.
+ * @returns {Promise}
+ */
+const getCheckedOutRepos = checkoutResults => (
+  new Promise((resolve, reject) => {
+    const checkedOutBranches = checkoutResults.filter(res => !res.aborted).map(res => res.repoName);
+    if (checkedOutBranches.length === 0) {
+      return reject(new ErrorAborted('All dependencies have no feature branch. No need to link.'));
+    }
+    return resolve(checkedOutBranches);
+  })
+);
+
+/**
  * Main function.
  */
 function main() {
   const logger = new TaggedLogger('Travis before script');
   logger.log('Start');
   let currentBranch;
+  let checkedOutRepos;
   Git.getBranch()
     .then((branch) => {
       currentBranch = branch;
@@ -41,13 +57,15 @@ function main() {
       logger.log('Dependencies cloned.');
       return Git.checkoutDependencies(currentBranch);
     })
-    .then(() => {
+    .then(checkoutResuts => getCheckedOutRepos(checkoutResuts))
+    .then((repos) => {
+      checkedOutRepos = repos;
       logger.log('Fixing npm known issues when dependencies are linked.');
       return Npm.fixKnownIssuesWhenLinked();
     })
     .then(() => {
       logger.log('Checking out finished.');
-      return Npm.linkDependencies();
+      return Npm.linkDependencies(checkedOutRepos);
     })
     .then(() => {
       logger.log('Dependencies linked. Good bye.');
