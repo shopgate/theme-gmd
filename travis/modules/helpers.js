@@ -13,6 +13,9 @@ const ErrorAborted = require('./ErrorAborted');
  */
 const shouldBranchBeLinked = name => (
   new Promise((resolve, reject) => {
+    if (!name) {
+      return reject(new ErrorAborted('No branch name found.'));
+    }
     if (name === 'master') {
       return reject(new ErrorAborted('Master should not be linked'));
     }
