@@ -48,3 +48,6 @@ coverage
 /config/app.json
 /public/
 /extensions/
+
+# Travis before_script
+/travis/travis-tmp-modules
