@@ -7,6 +7,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { REGISTER_PATH } from '@shopgate/pwa-common/constants/RoutePaths';
 import I18n from '@shopgate/pwa-common/components/I18n';
 import Link from '@shopgate/pwa-common/components/Router/components/Link';
 import View from 'Components/View';
@@ -134,7 +135,7 @@ class Login extends Component {
           </form>
           <div>
             <I18n.Text string="login.no_account" className={styles.noAccount} />
-            <Link href="/register" className={styles.signup}>
+            <Link href={REGISTER_PATH} className={styles.signup}>
               <I18n.Text string="login.register" />
             </Link>
           </div>
