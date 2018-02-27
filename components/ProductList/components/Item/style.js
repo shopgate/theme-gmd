@@ -25,6 +25,7 @@ const imageContainer = css({
   width: 40,
   minHeight: 40,
   boxSizing: 'content-box',
+  overflow: 'hidden',
 }).toString();
 
 const titleContainer = css({

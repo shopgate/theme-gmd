@@ -37,7 +37,12 @@ const Item = ({ product, display, isFavorite }) => (
     itemScope
     itemType="http://schema.org/Product"
   >
-    <ProductImage itemProp="image" src={product.featuredImageUrl} alt={product.name} />
+    <ProductImage
+      itemProp="image"
+      src={product.featuredImageUrl}
+      alt={product.name}
+      className={styles.image}
+    />
     {!!product.price.discount &&
       <div className={styles.badgeWrapper}>
         <DiscountBadge text={`-${product.price.discount}%`} />

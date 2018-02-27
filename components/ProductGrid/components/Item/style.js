@@ -53,6 +53,10 @@ const favorites = css({
   transform: 'translate3d(0, -50%, 0)',
 }).toString();
 
+const image = css({
+  overflow: 'hidden',
+}).toString();
+
 export default {
   badgeWrapper,
   basicPrice,
@@ -61,4 +65,5 @@ export default {
   priceWrapper,
   title,
   favorites,
+  image,
 };
