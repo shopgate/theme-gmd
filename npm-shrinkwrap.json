@@ -2281,6 +2281,12 @@
         "nth-check": "1.0.1"
       }
     },
+    "css-spring": {
+      "version": "git+https://github.com/shopgate/css-spring.git#2799c24e100cb5b646b44242e31a97d29404ca24",
+      "requires": {
+        "lodash": "4.17.4"
+      }
+    },
     "css-what": {
       "version": "2.1.0",
       "resolved": "https://registry.npmjs.org/css-what/-/css-what-2.1.0.tgz",
