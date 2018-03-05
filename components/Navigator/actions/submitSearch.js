@@ -4,14 +4,14 @@
  * This source code is licensed under the Apache 2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
+import setSearchSuggestionsPhrase from '@shopgate/pwa-common-commerce/search/action-creators/setSearchSuggestionsPhrase';
+import { getSearchSuggestionsPhrase } from '@shopgate/pwa-common-commerce/search/selectors';
 import { SEARCH_PATH } from '@shopgate/pwa-common-commerce/search/constants';
 import { getSearchPhrase } from '@shopgate/pwa-common/selectors/history';
 import pushHistory from '@shopgate/pwa-common/actions/history/pushHistory';
 import replaceHistory from '@shopgate/pwa-common/actions/history/replaceHistory';
 import getSearchResults from '@shopgate/pwa-common-commerce/search/actions/getSearchResults';
 import setViewTop from 'Components/View/action-creators/setViewTop';
-import setNavigatorSearchPhrase from '../actions/setNavigatorSearchPhrase';
 import toggleNavSearchField from './toggleNavSearchField';
 
 /**
@@ -20,15 +20,16 @@ import toggleNavSearchField from './toggleNavSearchField';
  */
 const submitSearch = () => (dispatch, getState) => {
   const state = getState();
-  const { searchActive, searchPhrase } = state.navigator;
+  const { searchActive } = state.navigator;
+  const searchSuggestionsPhrase = getSearchSuggestionsPhrase(state);
 
   if (!searchActive) {
     // Reset search phrase.
-    dispatch(setNavigatorSearchPhrase(''));
+    dispatch(setSearchSuggestionsPhrase(''));
     // Show search input.
     dispatch(toggleNavSearchField(true));
     return;
-  } else if (!searchPhrase) {
+  } else if (!searchSuggestionsPhrase) {
     // Hide search input.
     dispatch(toggleNavSearchField(false));
     return;
@@ -46,13 +47,13 @@ const submitSearch = () => (dispatch, getState) => {
     pathname: SEARCH_PATH,
     params: {
       ...otherParams,
-      s: searchPhrase,
+      s: searchSuggestionsPhrase,
     },
   };
 
   // Check if we are already on the search route.
   if (history.pathname.startsWith(SEARCH_PATH)) {
-    if (searchPhrase !== prevSearchPhrase) {
+    if (searchSuggestionsPhrase !== prevSearchPhrase) {
       // Preserve current history state
       historyLocation.state = {
         ...history.state,

@@ -17,10 +17,9 @@ import styles from './style';
  */
 class Search extends Component {
   static propTypes = {
-    getQueryParam: PropTypes.func.isRequired,
     active: PropTypes.bool,
     placeholder: PropTypes.string,
-    searchPhrase: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
+    searchPhrase: PropTypes.string,
     setSearchPhrase: PropTypes.func,
     submitSearch: PropTypes.func,
     toggleSearch: PropTypes.func,
@@ -65,7 +64,7 @@ class Search extends Component {
       // The search field just became active.
       if (nextProps.active) {
         // Get the current search phrase from the query params.
-        const currentSearchPhrase = this.props.getQueryParam('s') || '';
+        const currentSearchPhrase = this.props.searchPhrase;
 
         this.setState(
           {

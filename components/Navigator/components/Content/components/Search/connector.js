@@ -7,6 +7,7 @@
 
 import { connect } from 'react-redux';
 import { getQueryParam } from '@shopgate/pwa-common/selectors/history';
+import { getSearchSuggestionsPhrase } from '@shopgate/pwa-common-commerce/search/selectors';
 import toggleNavSearchField from 'Components/Navigator/actions/toggleNavSearchField';
 import submitSearch from 'Components/Navigator/actions/submitSearch';
 import setSearchPhrase from './actions/setSearchPhrase';
@@ -17,8 +18,7 @@ import setSearchPhrase from './actions/setSearchPhrase';
  * @return {Object} The extended component props.
  */
 const mapStateToProps = state => ({
-  getQueryParam: param => getQueryParam(state, param),
-  searchPhrase: state.navigator.searchPhrase,
+  searchPhrase: getSearchSuggestionsPhrase(state) || getQueryParam(state, 's') || '',
 });
 
 /**

@@ -13,7 +13,6 @@ import {
   TOGGLE_LOGIN,
   SET_NAVIGATOR_BACKGROUND,
   SET_NAVIGATOR_COLOR,
-  SET_NAVIGATOR_SEARCH_QUERY,
   SET_FILTER_OPENED,
   SET_FILTER_CLOSED,
   SET_FILTER_ATTRIBUTE_OPENED,
@@ -44,7 +43,6 @@ export default (
     filterAttributeOpen: false,
     loginOpen: false,
     searchActive: false,
-    searchPhrase: '',
     showCartIcon: true,
     showIconShadow: false,
     showProgressBar: true,
@@ -90,11 +88,6 @@ export default (
       return {
         ...state,
         textColor: action.color,
-      };
-    case SET_NAVIGATOR_SEARCH_QUERY:
-      return {
-        ...state,
-        searchPhrase: action.query,
       };
     case SET_FILTER_OPENED:
       return {

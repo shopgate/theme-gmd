@@ -58,16 +58,6 @@ export const isIconShadowShowing = createSelector(
  * @param {Object} state The global state.
  * @return {string}
  */
-export const getSearchPhrase = createSelector(
-  getNavigatorState,
-  navigatorState => navigatorState.searchPhrase
-);
-
-/**
- * Selects the current state from navigator search.
- * @param {Object} state The global state.
- * @return {string}
- */
 export const isSearchShowing = createSelector(
   getNavigatorState,
   navigatorState => navigatorState.showSearch

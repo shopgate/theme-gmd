@@ -6,7 +6,7 @@
  */
 
 import { getSearchPhrase } from '@shopgate/pwa-common/selectors/history';
-import { setSearchPhrase as setPhrase } from 'Components/Navigator/action-creators';
+import setSearchSuggestionsPhrase from '@shopgate/pwa-common-commerce/search/action-creators/setSearchSuggestionsPhrase';
 
 /**
  * Removes the last entry from the active filters stack.
@@ -20,7 +20,7 @@ const setSearchPhrase = query => (dispatch, getState) => {
     return;
   }
 
-  dispatch(setPhrase(query));
+  dispatch(setSearchSuggestionsPhrase(query));
 };
 
 export default setSearchPhrase;
