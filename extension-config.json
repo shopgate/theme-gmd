@@ -31,6 +31,17 @@
         "key": "value"
       }
     },
+    "registerAccountUrl": {
+      "type": "bigApi",
+      "destination": "frontend",
+      "default": "/register",
+      "params": {
+        "method": "GET",
+        "service": "config",
+        "path": "/v1/shop/%(shopId)s/custom_register_account_link",
+        "key": "value"
+      }
+    },
     "hasFavorites": {
       "type": "bigApi",
       "destination": "frontend",
