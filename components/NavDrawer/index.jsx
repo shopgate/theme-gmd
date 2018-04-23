@@ -30,6 +30,7 @@ import CartItem from './components/CartItem';
 import Divider from './components/Divider';
 import Header from './components/Header';
 import connect from './connector';
+import autocloseItemFactory from './components/Item/autocloseItemFactory';
 
 /**
  * The NavDrawer component.
@@ -118,7 +119,7 @@ class NavDrawer extends Component {
 
     const props = {
       handleClose: this.handleClose,
-      Item,
+      Item: autocloseItemFactory(this.handleClose),
     };
 
     return (

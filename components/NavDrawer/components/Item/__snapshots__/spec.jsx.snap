@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AutocloseItemFactory should create Item component with default close prop 1`] = `
+<Component>
+  <Item
+    close={[Function]}
+    count={null}
+    href=""
+    icon={null}
+    link=""
+    onClick={[Function]}
+    primary={false}
+    withIndicator={false}
+  >
+    <div
+      aria-hidden={true}
+      className="css-13azwyo"
+      data-test-id="NavDrawerLink"
+      onClick={[Function]}
+    >
+      <Ripple
+        className=""
+        color="#000"
+        disabled={false}
+        fill={true}
+        onComplete={[Function]}
+        overflow={false}
+        size={null}
+      >
+        <div
+          aria-hidden={true}
+          className=""
+          data-test-id="Ripple"
+          onClick={[Function]}
+          style={null}
+        >
+          <Grid
+            className="css-1yzks37"
+            component="ul"
+            wrap={false}
+          >
+            <ul
+              className="css-1yzks37 css-h7r55a"
+            >
+              <GridItem
+                className=""
+                component="li"
+                grow={0}
+                shrink={1}
+              >
+                <li
+                  className=""
+                >
+                  <div
+                    className="css-17ij4h5"
+                  />
+                </li>
+              </GridItem>
+              <GridItem
+                className=""
+                component="li"
+                grow={1}
+                shrink={1}
+              >
+                <li
+                  className=" css-1gs0ko2"
+                >
+                  <div
+                    className="css-1hv14w9"
+                  />
+                </li>
+              </GridItem>
+            </ul>
+          </Grid>
+        </div>
+      </Ripple>
+    </div>
+  </Item>
+</Component>
+`;
