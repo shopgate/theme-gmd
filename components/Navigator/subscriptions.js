@@ -7,9 +7,9 @@ import {
   routeDidLeave,
 } from '@shopgate/pwa-common/streams/history';
 import { getSearchPhrase } from '@shopgate/pwa-common/selectors/history';
-import toggleNavSearchField from 'Components/Navigator/actions/toggleNavSearchField';
 import setSearchSuggestionsPhrase from '@shopgate/pwa-common-commerce/search/action-creators/setSearchSuggestionsPhrase';
 import { getSearchSuggestionsPhrase } from '@shopgate/pwa-common-commerce/search/selectors';
+import toggleNavSearchField from 'Components/Navigator/actions/toggleNavSearchField';
 import enableNavigatorSearch from './actions/enableNavigatorSearch';
 import disableNavigatorSearch from './actions/disableNavigatorSearch';
 import toggleCartIcon from './actions/toggleCartIcon';

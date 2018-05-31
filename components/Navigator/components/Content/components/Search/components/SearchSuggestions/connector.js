@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import fetchSearchSuggestions from '@shopgate/pwa-common-commerce/search/actions/fetchSearchSuggestions';
 import {
-  getCurrentSearchSuggestions,
   getSearchSuggestionsPhrase,
+  getCurrentSearchSuggestions,
   isFetchingCurrentSearchSuggestions,
 } from '@shopgate/pwa-common-commerce/search/selectors';
 import setSearchSuggestionsPhrase from '@shopgate/pwa-common-commerce/search/action-creators/setSearchSuggestionsPhrase';
