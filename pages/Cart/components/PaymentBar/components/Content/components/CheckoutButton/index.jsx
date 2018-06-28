@@ -13,10 +13,11 @@ import connect from './connector';
 const CheckoutButton = ({ isActive }) => (
   <Link href={CHECKOUT_PATH} disabled={!isActive}>
     <RippleButton
+      disabled={!isActive}
       flat={false}
       type="secondary"
     >
-      <I18n.Text string="cart.checkout"/>
+      <I18n.Text string="cart.checkout" />
     </RippleButton>
   </Link>
 );
