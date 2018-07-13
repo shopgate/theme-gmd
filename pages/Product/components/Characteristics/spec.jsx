@@ -3,41 +3,28 @@ import { mount } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
+import { productWithVariants } from '@shopgate/pwa-common-commerce/product/mock';
 import mockRenderOptions from '@shopgate/pwa-common/helpers/mocks/mockRenderOptions';
-import { basicProductState } from './../mock';
+// Import from context since it'll be mocked later
+import { defaultContext } from './../../context';
 
 const mockedStore = configureStore([thunk]);
 jest.resetAllMocks();
-jest.mock('Components/Reviews/components/Header', () => function () {
-  return (<div />);
-});
 jest.mock('./../../context');
+jest.mock('@shopgate/pwa-common/components/ProductCharacteristics/context');
 
-describe('<ProductHeader>', () => {
-  // eslint-disable-next-line require-jsdoc
-  const createComponent = (state, props) => {
+describe.skip('<Characteristics>', () => {
+  const createComponent = (state) => {
     // eslint-disable-next-line global-require
     const ProductHeader = require('./index').default;
     const store = mockedStore(state);
     return mount(
       <Provider store={store}>
-        <ProductHeader {...props} />
+        <ProductHeader productId={defaultContext.productId} />
       </Provider>,
       mockRenderOptions
     );
   };
-
-  const components = [
-    'CTAButtons',
-    'Manufacturer',
-    'Availability',
-    'Rating',
-    'Name',
-    'Price',
-    'PriceStriked',
-    'Shipping',
-    'Tiers',
-  ];
 
   beforeEach(() => {
     jest.resetModules();
@@ -48,15 +35,10 @@ describe('<ProductHeader>', () => {
   });
 
   it('should render', () => {
-    // eslint-disable-next-line global-require
-    const { defaultContext } = require('./../../context');
-    const { productId } = basicProductState.product.currentProduct;
+    const { productId } = productWithVariants.product.currentProduct;
     defaultContext.productId = productId;
+    const cmp = createComponent(productWithVariants);
 
-    const cmp = createComponent(basicProductState, { productId });
     expect(cmp).toMatchSnapshot();
-    components.forEach((c) => {
-      expect(cmp.find(c).exists()).toBe(true);
-    });
   });
 });

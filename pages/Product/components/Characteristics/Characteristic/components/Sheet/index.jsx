@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import Sheet from '@shopgate/pwa-ui-shared/Sheet';
 import List from 'Components/List';
-import VariantContext from '@shopgate/pwa-common/components/ProductCharacteristics/context';
+import { VariantContext } from '@shopgate/pwa-common/components/ProductCharacteristics/context';
 import SheetItem from '../SheetItem';
 import VariantAvailability from '../VariantAvailability';
 import { ProductContext } from './../../../../../context';

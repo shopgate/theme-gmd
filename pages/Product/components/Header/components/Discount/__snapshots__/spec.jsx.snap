@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Discount> should render discount 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Connect(Discount)
+    productId="913"
+  >
+    <Discount
+      dispatch={[Function]}
+      price={
+        Object {
+          "currency": "EUR",
+          "discount": 10,
+          "info": "",
+          "msrp": 0,
+          "taxAmount": 0,
+          "taxPercent": 0,
+          "tiers": Array [],
+          "totalPrice": 89,
+          "unitPrice": 89,
+          "unitPriceMax": 1000,
+          "unitPriceMin": 0,
+          "unitPriceNet": 89,
+          "unitPriceStriked": 0,
+          "unitPriceWithTax": 89,
+        }
+      }
+      productId="913"
+    >
+      <PlaceholderLabel
+        className="css-q720h0"
+        ready={true}
+        style={null}
+      >
+        <div
+          className="css-1iex5li"
+        >
+          <DiscountBadge
+            className=""
+            discount={null}
+            display="small"
+            text="-10%"
+          >
+            <div
+              data-test-id="-10%"
+            >
+              <Translate
+                className="css-pzju2o "
+                params={
+                  Array [
+                    null,
+                  ]
+                }
+                string="-10%"
+              >
+                <span
+                  className="css-pzju2o "
+                >
+                  -10%
+                </span>
+              </Translate>
+            </div>
+          </DiscountBadge>
+        </div>
+      </PlaceholderLabel>
+    </Discount>
+  </Connect(Discount)>
+</Provider>
+`;
+
+exports[`<Discount> should render empty 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Connect(Discount)
+    productId="913"
+  >
+    <Discount
+      dispatch={[Function]}
+      price={
+        Object {
+          "currency": "EUR",
+          "info": "",
+          "msrp": 0,
+          "taxAmount": 0,
+          "taxPercent": 0,
+          "tiers": Array [],
+          "totalPrice": 89,
+          "unitPrice": 89,
+          "unitPriceMax": 1000,
+          "unitPriceMin": 0,
+          "unitPriceNet": 89,
+          "unitPriceStriked": 0,
+          "unitPriceWithTax": 89,
+        }
+      }
+      productId="913"
+    />
+  </Connect(Discount)>
+</Provider>
+`;
