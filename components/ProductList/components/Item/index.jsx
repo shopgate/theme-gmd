@@ -66,6 +66,7 @@ const Item = ({ display, product }) => (
           <Portal name={portals.PRODUCT_ITEM_NAME_AFTER} props={{ productId: product.id }} />
         </Fragment>
 
+        {/* STAR RATING */}
         {(product && product.rating && product.rating.average > 0) && (
           <Fragment>
             <Portal name={portals.PRODUCT_ITEM_STARS_BEFORE} props={{ productId: product.id }} />
