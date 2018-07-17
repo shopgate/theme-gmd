@@ -13,6 +13,7 @@ import Price from '@shopgate/pwa-ui-shared/Price';
 import PriceStriked from '@shopgate/pwa-ui-shared/PriceStriked';
 import PriceInfo from '@shopgate/pwa-ui-shared/PriceInfo';
 import FavoritesButton from '@shopgate/pwa-ui-shared/FavoritesButton';
+import StarRating from '@shopgate/pwa-ui-shared/RatingStars';
 import styles from './style';
 import connect from './connector';
 
@@ -71,6 +72,16 @@ const Item = ({ product, display, isFavorite }) => (
               </div>
             </Portal>
             <Portal name={portals.PRODUCT_ITEM_NAME_AFTER} props={{ productId: product.id }} />
+          </Fragment>
+        )}
+
+        {(product && product.rating && product.rating.average > 0) && (
+          <Fragment>
+            <Portal name={portals.PRODUCT_ITEM_STARS_BEFORE} props={{ productId: product.id }} />
+            <Portal name={portals.PRODUCT_ITEM_STARS} props={{ productId: product.id }}>
+              <StarRating value={product.rating.average} />
+            </Portal>
+            <Portal name={portals.PRODUCT_ITEM_STARS_AFTER} props={{ productId: product.id }} />
           </Fragment>
         )}
 
