@@ -14,6 +14,7 @@ import PriceStriked from '@shopgate/pwa-ui-shared/PriceStriked';
 import PriceInfo from '@shopgate/pwa-ui-shared/PriceInfo';
 import Manufacturer from '@shopgate/pwa-ui-shared/Manufacturer';
 import Availability from '@shopgate/pwa-ui-shared/Availability';
+import StarRating from '@shopgate/pwa-ui-shared/RatingStars';
 import styles from './style';
 
 /**
@@ -64,6 +65,17 @@ const Item = ({ display, product }) => (
           </Portal>
           <Portal name={portals.PRODUCT_ITEM_NAME_AFTER} props={{ productId: product.id }} />
         </Fragment>
+
+        {/* STAR RATING */}
+        {(product.rating && product.rating.average > 0) && (
+          <Fragment>
+            <Portal name={portals.PRODUCT_ITEM_STARS_BEFORE} props={{ productId: product.id }} />
+            <Portal name={portals.PRODUCT_ITEM_STARS} props={{ productId: product.id }}>
+              <StarRating value={product.rating.average} />
+            </Portal>
+            <Portal name={portals.PRODUCT_ITEM_STARS_AFTER} props={{ productId: product.id }} />
+          </Fragment>
+        )}
 
         {/* MANUFACTURER */}
         {(!display || (display.manufacturer && product.manufacturer)) && (
