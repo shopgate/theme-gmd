@@ -8,6 +8,7 @@ import { defaultContext } from '../../__mocks__/context';
 import { basicProductState } from './../mock';
 
 const mockedStore = configureStore([thunk]);
+jest.resetAllMocks();
 
 jest.mock('@shopgate/react-hammerjs/src/Hammer', () => ({ children }) => children);
 
@@ -31,6 +32,10 @@ describe('<ProductContent>', () => {
 
   beforeEach(() => {
     jest.resetModules();
+  });
+
+  afterEach(() => {
+    jest.resetAllMocks();
   });
 
   it('should render', () => {

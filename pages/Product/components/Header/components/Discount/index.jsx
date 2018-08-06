@@ -27,6 +27,7 @@ const Discount = ({ price }) => {
 };
 
 Discount.propTypes = {
+  productId: PropTypes.string.isRequired,
   price: PropTypes.shape(),
 };
 
