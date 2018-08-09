@@ -55,7 +55,7 @@ const getLiveshoppingTimeout = (liveshoppings) => {
  * @returns {JSX}
  */
 const createProductSliderItem = ({
-  id, name, featuredImageUrl, price,
+  id, name, featuredImageUrl, price, optimizedImage
 }, timeout) => {
   const priceStriked = price.unitPriceStriked > 0 ? price.unitPriceStriked : price.msrp;
 
@@ -65,7 +65,11 @@ const createProductSliderItem = ({
         <Link href={`${ITEM_PATH}/${bin2hex(id)}`}>
           <Grid>
             <Grid.Item className={styles.imagePane}>
-              <ProductImage src={featuredImageUrl} alt={name} />
+              <ProductImage
+                src={featuredImageUrl}
+                alt={name}
+                optimizedImages={optimizedImage}
+              />
             </Grid.Item>
             <Grid.Item className={styles.infoPane}>
               <div>

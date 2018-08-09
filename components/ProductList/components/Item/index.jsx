@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Grid from '@shopgate/pwa-common/components/Grid';
 import Image from '@shopgate/pwa-common/components/Image';
 import Link from '@shopgate/pwa-common/components/Router/components/Link';
+import Picture from '@shopgate/pwa-ui-shared/Picture';
 import Ellipsis from '@shopgate/pwa-common/components/Ellipsis';
 import { bin2hex } from '@shopgate/pwa-common/helpers/data';
 import Portal from '@shopgate/pwa-common/components/Portal';
@@ -36,7 +37,11 @@ const Item = ({ display, product }) => (
         {/* IMAGE */}
         <Portal name={portals.PRODUCT_ITEM_IMAGE_BEFORE} props={{ productId: product.id }} />
         <Portal name={portals.PRODUCT_ITEM_IMAGE} props={{ productId: product.id }}>
-          <Image itemProp="image" src={product.featuredImageUrl} alt={product.name} />
+          {
+            product.optimizedImage ?
+              <Picture sources={product.optimizedImage} alt={product.name} />
+              : <Image itemProp="image" src={product.featuredImageUrl} alt={product.name} />
+          }
         </Portal>
         <Portal name={portals.PRODUCT_ITEM_IMAGE_AFTER} props={{ productId: product.id }} />
 
