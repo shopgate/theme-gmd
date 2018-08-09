@@ -23,7 +23,6 @@ class ProductImage extends Component {
     forcePlaceholder: PropTypes.bool,
     highestResolutionLoaded: PropTypes.func,
     optimizedImages: SourceSetType,
-    pictureClassName: PropTypes.string,
     ratio: PropTypes.arrayOf(PropTypes.number),
     resolutions: PropTypes.arrayOf(PropTypes.shape({
       width: PropTypes.number.isRequired,
@@ -39,7 +38,6 @@ class ProductImage extends Component {
     forcePlaceholder: false,
     highestResolutionLoaded: () => {},
     optimizedImages: null,
-    pictureClassName: null,
     ratio: null,
     resolutions: [
       {
@@ -115,11 +113,7 @@ class ProductImage extends Component {
 
     if (this.props.optimizedImages) {
       return (
-        <Picture
-          sources={this.props.optimizedImages}
-          alt={this.props.alt}
-          className={this.props.pictureClassName}
-        />
+        <Picture sources={this.props.optimizedImages} alt={this.props.alt} square />
       );
     }
     // Return the actual image.

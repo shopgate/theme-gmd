@@ -105,7 +105,6 @@ class ImageSlider extends Component {
                   optimizedImages={image}
                   src={image.png}
                   animating={false}
-                  pictureClassName={styles.picture}
                 />
               ))
               : images.map(image => (
