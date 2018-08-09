@@ -5,6 +5,7 @@ import enableNavigator from 'Components/Navigator/actions/enableNavigator';
 import fetchProductImages from '@shopgate/pwa-common-commerce/product/actions/getProductImages';
 import {
   getProductImages,
+  getProductOptimizedImages,
   getCurrentBaseProduct,
 } from '@shopgate/pwa-common-commerce/product/selectors/product';
 
@@ -15,6 +16,7 @@ import {
  */
 const mapStateToProps = state => ({
   images: getProductImages(state),
+  optimizedImages: getProductOptimizedImages(state),
   product: getCurrentBaseProduct(state),
 });
 

@@ -13,6 +13,7 @@ import Card from '@shopgate/pwa-ui-shared/Card';
 import DiscountBadge from '@shopgate/pwa-ui-shared/DiscountBadge';
 import Price from '@shopgate/pwa-ui-shared/Price';
 import PriceStriked from '@shopgate/pwa-ui-shared/PriceStriked';
+import { SourceSetType } from '@shopgate/pwa-ui-shared/Picture';
 import ProductImage from 'Components/ProductImage';
 import connect from './connector';
 import styles from './style';
@@ -55,7 +56,7 @@ const getLiveshoppingTimeout = (liveshoppings) => {
  * @returns {JSX}
  */
 const createProductSliderItem = ({
-  id, name, featuredImageUrl, price, optimizedImage
+  id, name, featuredImageUrl, price, optimizedImage,
 }, timeout) => {
   const priceStriked = price.unitPriceStriked > 0 ? price.unitPriceStriked : price.msrp;
 
@@ -133,7 +134,12 @@ createProductSliderItem.propTypes = {
   featuredImageUrl: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  optimizedImage: SourceSetType,
   price: PropTypes.shape().isRequired,
+};
+
+createProductSliderItem.defaultProps = {
+  optimizedImage: null,
 };
 
 /**
