@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from '@shopgate/pwa-common/components/Router/components/Link';
 import ImageSlider from '@shopgate/pwa-ui-shared/ImageSlider';
+import OptimizedImage from '@shopgate/pwa-ui-shared/OptimizedImage';
+import { SourceSetType } from '@shopgate/pwa-ui-shared/Picture';
 import styles from './style';
 
 /**
@@ -23,12 +25,27 @@ const ImageSliderWidget = ({ settings, className }) => (
       if (image.link) {
         return (
           <Link key={key} href={image.link} className={styles.link} data-test-id="withLink">
-            <img src={image.image} alt={image.alt} className={styles.image} data-test-id={`link : ${settings.link}`} />
+            <OptimizedImage
+              src={image.image}
+              sources={image.optimizedImage}
+              className={styles.image}
+              alt={image.alt}
+              testId={`link : ${settings.link}`}
+            />
           </Link>
         );
       }
 
-      return <img key={key} src={image.image} alt={image.alt} className={styles.image} data-test-id="withoutLink" />;
+      return (
+        <OptimizedImage
+          key={key}
+          src={image.image}
+          sources={image.optimizedImage}
+          className={styles.image}
+          alt={image.alt}
+          testId="withoutLink"
+        />
+      );
     })}
   </ImageSlider>
 );
@@ -45,6 +62,7 @@ ImageSliderWidget.propTypes = {
         image: PropTypes.string.isRequired, // The image URL
         link: PropTypes.string, // The link to the image
         alt: PropTypes.string, // The alternative title for images that could not be loaded.
+        optimizedImage: SourceSetType,
       })
     )).isRequired,
   }).isRequired,
