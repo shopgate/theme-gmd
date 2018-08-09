@@ -5,7 +5,6 @@ import ProductImage from 'Components/ProductImage';
 import { SourceSetType } from '@shopgate/pwa-ui-shared/Picture';
 import BaseImageSlider from '@shopgate/pwa-ui-shared/ImageSlider';
 import connect from './connector';
-import styles from './style';
 
 /**
  * The product image slider component.
