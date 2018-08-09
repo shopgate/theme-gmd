@@ -25,6 +25,7 @@ exports[`<ProductImage /> should render the image without a placeholder 1`] = `
   highestResolutionLoaded={[Function]}
   onError={[Function]}
   onLoad={null}
+  optimizedImages={null}
   ratio={null}
   resolutions={
     Array [
