@@ -40,7 +40,7 @@ describe('functional tests cart page', () => {
   //     .should('be.visible');
   // });
 
-  it('should add sescond product to cart and delete it', () => {
+  it('should add second product to cart', () => {
     cy.visit('');
     cy.get(els.basicCategory)
       .scrollIntoView()
@@ -76,7 +76,7 @@ describe('functional tests cart page', () => {
       .click();
     cy.get(els.basicDialogOkButton)
       .click();
-    cy.get('[data-test-id="subTotal: 283"]')
+    cy.get('[data-test-id="subTotal: 84"]')
       .should('be.visible');
   });
 
