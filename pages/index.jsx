@@ -13,6 +13,7 @@ import {
   LOGIN_PATH,
   REGISTER_PATH,
   CHECKOUT_PATH,
+  CHECKOUT_GUEST_PATH,
 } from '@shopgate/pwa-common/constants/RoutePaths';
 import { CATEGORY_PATH } from '@shopgate/pwa-common-commerce/category/constants';
 import { FILTER_PATH } from '@shopgate/pwa-common-commerce/filter/constants';
@@ -64,6 +65,7 @@ const Pages = () => (
           <Route path={`${SEARCH_PATH}`} component={routes.Search} />
           <Route path={`${LOGIN_PATH}`} component={routes.Login} />
           <Route path={`${REGISTER_PATH}`} />
+          <Route path={`${CHECKOUT_GUEST_PATH}`} />
 
           <AuthRoutes to={`${LOGIN_PATH}`}>
             <Route path={`${CHECKOUT_PATH}`} component={routes.Checkout} />
