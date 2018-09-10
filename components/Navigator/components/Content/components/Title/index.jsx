@@ -1,15 +1,16 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { HISTORY_POP_ACTION } from '@shopgate/pwa-common/constants/ActionTypes';
+import { ACTION_POP } from '@virtuous/conductor/constants';
+import getCurrentAction from '@virtuous/conductor-helpers/getCurrentAction';
+import I18n from '@shopgate/pwa-common/components/I18n';
 import connect from './connector';
 import styles from './style';
 
 /**
  * The Navigator Title component.
  */
-class Title extends Component {
+class Title extends PureComponent {
   static propTypes = {
-    action: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     onClick: PropTypes.func,
   };
@@ -26,7 +27,7 @@ class Title extends Component {
   constructor(props) {
     super(props);
 
-    this.previousTitle = null;
+    this.previousTitle = '';
     this.title = props.title;
   }
 
@@ -42,15 +43,6 @@ class Title extends Component {
   }
 
   /**
-   * Checks if the title was reset and if the component should update.
-   * @param {Object} nextProps The next incoming props.
-   * @returns {boolean} Whether the component should update.
-   */
-  shouldComponentUpdate(nextProps) {
-    return (this.props.title !== nextProps.title) && nextProps.title !== '';
-  }
-
-  /**
    * Determine how the views should be displayed.
    * @returns {JSX}
    */
@@ -63,7 +55,7 @@ class Title extends Component {
       };
     }
 
-    const pop = this.props.action === HISTORY_POP_ACTION;
+    const pop = getCurrentAction() === ACTION_POP;
 
     return {
       inactive: pop ? styles.centerToRight : styles.centerToLeft,
@@ -83,12 +75,12 @@ class Title extends Component {
       <div aria-hidden onClick={this.props.onClick}>
         {/* Renders the inactive / previous title */}
         <div className={`${styles.title} ${transition.inactive}`}>
-          {this.previousTitle}
+          <I18n.Text string={this.previousTitle} />
         </div>
 
         {/* Renders the active / current title */}
         <div className={`${styles.title} ${transition.active}`} data-test-id={`title: ${this.props.title}`}>
-          {this.props.title}
+          <I18n.Text string={this.props.title} />
         </div>
       </div>
     );

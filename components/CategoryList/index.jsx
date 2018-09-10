@@ -5,7 +5,6 @@ import { CATEGORY_PATH } from '@shopgate/pwa-common-commerce/category/constants'
 import Portal from '@shopgate/pwa-common/components/Portal';
 import * as portals from '@shopgate/pwa-common-commerce/category/constants/Portals';
 import List from 'Components/List';
-import connect from './connector';
 
 /**
  * The category list component.
@@ -13,7 +12,7 @@ import connect from './connector';
  * @returns {JSX}
  */
 const CategoryList = ({ categories }) => {
-  if (!categories) {
+  if (!categories || !categories.length) {
     return null;
   }
 
@@ -43,4 +42,4 @@ CategoryList.defaultProps = {
   categories: null,
 };
 
-export default connect(CategoryList);
+export default CategoryList;
