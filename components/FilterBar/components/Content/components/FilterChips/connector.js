@@ -20,10 +20,12 @@ const mapStateToProps = state => ({
  * @param {Function} dispatch The redux dispatch function.
  * @return {Object} The extended component props.
  */
-const mapDispatchToProps = (dispatch) => ({
-  handleFilterRemove: (id, index = null) => {
+const mapDispatchToProps = dispatch => ({
+  handleFilterRemove: (id, index) => {
     dispatch(removeTemporaryFilter(id, index));
-    dispatch(commitTemporaryFilters());
+    setTimeout(() => {
+      dispatch(commitTemporaryFilters());
+    }, 0);
   },
   handleOpenFilters: () => dispatch(openFilterView()),
 });

@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import Link from '@shopgate/pwa-common/components/Router/components/Link';
+import pure from 'recompose/pure';
+import Link from '@shopgate/pwa-common/components/Link';
 import Ellipsis from '@shopgate/pwa-common/components/Ellipsis';
 import { bin2hex } from '@shopgate/pwa-common/helpers/data';
 import Portal from '@shopgate/pwa-common/components/Portal';
@@ -26,6 +27,7 @@ const Item = ({ product, display, isFavorite }) => (
     itemProp="item"
     itemScope
     itemType="http://schema.org/Product"
+    state={{ title: product.name }}
   >
 
     {/* IMAGE */}
@@ -96,4 +98,4 @@ Item.defaultProps = {
   display: null,
 };
 
-export default connect(Item);
+export default connect(pure(Item));

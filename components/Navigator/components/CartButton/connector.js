@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
-import { getHistoryPathname } from '@shopgate/pwa-common/selectors/history';
+import { getCurrentPathname } from '@shopgate/pwa-common/selectors/router';
 import { CART_PATH } from '@shopgate/pwa-common-commerce/cart/constants';
 import { getCartProductDisplayCount } from '@shopgate/pwa-common-commerce/cart/selectors';
-import pushHistory from '@shopgate/pwa-common/actions/history/pushHistory';
+import { historyPush } from '@shopgate/pwa-common/actions/router';
 import { isCartButtonVisible } from '../../selectors';
 
 /**
@@ -11,7 +11,7 @@ import { isCartButtonVisible } from '../../selectors';
  * @return {Object} The extended component props.
  */
 const mapStateToProps = state => ({
-  activeCartRoute: getHistoryPathname(state) === CART_PATH,
+  activeCartRoute: getCurrentPathname(state) === CART_PATH,
   cartProductCount: getCartProductDisplayCount(state),
   visible: isCartButtonVisible(state),
 });
@@ -22,7 +22,7 @@ const mapStateToProps = state => ({
  * @return {Object} The extended component props.
  */
 const mapDispatchToProps = dispatch => ({
-  openCart: () => dispatch(pushHistory(CART_PATH)),
+  openCart: () => dispatch(historyPush({ pathname: CART_PATH })),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps);

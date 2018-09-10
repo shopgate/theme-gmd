@@ -13,26 +13,28 @@ import AllReviewsLink from './components/AllReviewsLink';
  * @param {Array} reviews Reviews which should be shown in the product page.
  * @returns {JSX|null}
  */
-const Reviews = ({ rating, reviews }) => {
+const Reviews = ({ productId, rating, reviews }) => {
   if (!appConfig.hasReviews) {
     return null;
   }
 
   return (
     <div className={styles.container} data-test-id="reviewSection">
-      <Header rating={rating} />
+      <Header productId={productId} rating={rating} />
       <List reviews={reviews} />
-      <AllReviewsLink />
+      <AllReviewsLink productId={productId} />
     </div>
   );
 };
 
 Reviews.propTypes = {
+  productId: PropTypes.string,
   rating: PropTypes.shape(),
   reviews: PropTypes.arrayOf(PropTypes.shape()),
 };
 
 Reviews.defaultProps = {
+  productId: null,
   rating: null,
   reviews: null,
 };

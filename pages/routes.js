@@ -1,7 +1,17 @@
 import Loadable from 'react-loadable';
 
+export const StartPage = Loadable({
+  loader: () => import('./StartPage'),
+  loading: () => null,
+});
+
 export const Page = Loadable({
   loader: () => import('./Page'),
+  loading: () => null,
+});
+
+export const RootCategory = Loadable({
+  loader: () => import('./RootCategory'),
   loading: () => null,
 });
 
@@ -55,17 +65,7 @@ export const Login = Loadable({
   loading: () => null,
 });
 
-export const Orders = Loadable({
-  loader: () => import('./Orders'),
-  loading: () => null,
-});
-
 export const WriteReview = Loadable({
   loader: () => import('./WriteReview'),
-  loading: () => null,
-});
-
-export const Checkout = Loadable({
-  loader: () => import('./Checkout'),
   loading: () => null,
 });
