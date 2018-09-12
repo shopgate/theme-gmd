@@ -80,10 +80,14 @@ class ProductImage extends Component {
   /**
    * Should component update given the new props?
    * @param {Object} nextProps The next component props.
+   * @param {Object} nextState The next component state.
    * @return {boolean} Update or not.
    */
-  shouldComponentUpdate(nextProps) {
-    return !isEqual(this.props, nextProps);
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      nextState.showPlaceholder !== this.state.showPlaceholder ||
+      !isEqual(this.props, nextProps)
+    );
   }
 
   /**
@@ -113,7 +117,12 @@ class ProductImage extends Component {
 
     if (this.props.optimizedImages) {
       return (
-        <Picture sources={this.props.optimizedImages} alt={this.props.alt} square />
+        <Picture
+          sources={this.props.optimizedImages}
+          alt={this.props.alt}
+          onError={this.imageLoadingFailed}
+          square
+        />
       );
     }
     // Return the actual image.

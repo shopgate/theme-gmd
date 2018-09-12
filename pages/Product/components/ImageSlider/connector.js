@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import {
   getProductImages,
-  getProductOptimizedImages,
+  getCurrentProductOptimizedImages,
   getCurrentBaseProduct,
 } from '@shopgate/pwa-common-commerce/product/selectors/product';
 import openGallery from '../../actions/openGallery';
@@ -13,7 +13,7 @@ import openGallery from '../../actions/openGallery';
  */
 const mapStateToProps = state => ({
   images: getProductImages(state),
-  optimizedImages: getProductOptimizedImages(state),
+  optimizedImages: getCurrentProductOptimizedImages(state),
   product: getCurrentBaseProduct(state),
 });
 
