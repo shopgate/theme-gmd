@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from '@shopgate/pwa-common/components/Router/components/Link';
+import { SourceSetType } from '@shopgate/pwa-ui-shared/Picture';
+import Content from './components/Content';
 import styles from './style';
 
 /**
@@ -9,20 +11,16 @@ import styles from './style';
  * @returns {JSX}
  */
 const ImageWidget = ({ settings }) => {
-  const content = (
-    <img src={settings.image} alt={settings.alt} className={styles.image} data-test-id={`imageWidget: ${settings.link}`} />
-  );
-
   // Wrap a Link around the Image if needed.
   if (settings.link) {
     return (
       <Link href={settings.link} className={styles.link} data-test-id="link">
-        {content}
+        <Content settings={settings} />
       </Link>
     );
   }
 
-  return content;
+  return <Content settings={settings} />;
 };
 
 ImageWidget.propTypes = {
@@ -30,6 +28,7 @@ ImageWidget.propTypes = {
     alt: PropTypes.string,
     image: PropTypes.string,
     link: PropTypes.string,
+    optimizedImage: SourceSetType,
   }).isRequired,
 };
 

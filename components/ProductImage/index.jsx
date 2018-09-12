@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
 import Image from '@shopgate/pwa-common/components/Image';
+import Picture, { SourceSetType } from '@shopgate/pwa-ui-shared/Picture';
 import Placeholder from '@shopgate/pwa-ui-shared/icons/PlaceholderIcon';
 import colors from 'Styles/colors';
 import styles from './style';
@@ -21,6 +22,7 @@ class ProductImage extends Component {
     animating: PropTypes.bool,
     forcePlaceholder: PropTypes.bool,
     highestResolutionLoaded: PropTypes.func,
+    optimizedImages: SourceSetType,
     ratio: PropTypes.arrayOf(PropTypes.number),
     resolutions: PropTypes.arrayOf(PropTypes.shape({
       width: PropTypes.number.isRequired,
@@ -35,6 +37,7 @@ class ProductImage extends Component {
     animating: true,
     forcePlaceholder: false,
     highestResolutionLoaded: () => {},
+    optimizedImages: null,
     ratio: null,
     resolutions: [
       {
@@ -77,10 +80,14 @@ class ProductImage extends Component {
   /**
    * Should component update given the new props?
    * @param {Object} nextProps The next component props.
+   * @param {Object} nextState The next component state.
    * @return {boolean} Update or not.
    */
-  shouldComponentUpdate(nextProps) {
-    return !isEqual(this.props, nextProps);
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      nextState.showPlaceholder !== this.state.showPlaceholder ||
+      !isEqual(this.props, nextProps)
+    );
   }
 
   /**
@@ -108,6 +115,16 @@ class ProductImage extends Component {
       );
     }
 
+    if (this.props.optimizedImages) {
+      return (
+        <Picture
+          sources={this.props.optimizedImages}
+          alt={this.props.alt}
+          onError={this.imageLoadingFailed}
+          square
+        />
+      );
+    }
     // Return the actual image.
     return (
       <Image

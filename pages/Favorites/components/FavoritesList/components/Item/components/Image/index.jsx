@@ -20,7 +20,7 @@ const Image = ({ product }) => (
       itemScope
       itemType="http://schema.org/Product"
     >
-      <ProductImage src={product.featuredImageUrl} />
+      <ProductImage src={product.featuredImageUrl} optimizedImages={product.optimizedImage} />
     </Link>
   </div>
 );

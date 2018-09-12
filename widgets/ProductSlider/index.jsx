@@ -131,6 +131,7 @@ class ProductSlider extends Component {
           snapItems={false}
           slidesPerView={2.3}
           classNames={{ container: styles.sliderContainer }}
+          preloadImages={false}
         >
           {items}
         </Slider>

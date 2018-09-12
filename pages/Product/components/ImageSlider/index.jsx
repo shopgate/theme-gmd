@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Hammer from '@shopgate/react-hammerjs';
 import ProductImage from 'Components/ProductImage';
+import { SourceSetType } from '@shopgate/pwa-ui-shared/Picture';
 import BaseImageSlider from '@shopgate/pwa-ui-shared/ImageSlider';
 import connect from './connector';
 
@@ -16,11 +17,13 @@ class ImageSlider extends Component {
   static propTypes = {
     images: PropTypes.arrayOf(PropTypes.string),
     onOpen: PropTypes.func,
+    optimizedImages: PropTypes.arrayOf(SourceSetType),
     product: PropTypes.shape(),
   };
 
   static defaultProps = {
     images: null,
+    optimizedImages: null,
     product: null,
     onOpen: () => {},
   };
@@ -67,7 +70,7 @@ class ImageSlider extends Component {
    * @returns {JSX}
    */
   render() {
-    const { product, images } = this.props;
+    const { product, images, optimizedImages } = this.props;
 
     const resolutions = [
       {
@@ -93,9 +96,20 @@ class ImageSlider extends Component {
     } else {
       content = (
         <BaseImageSlider loop indicators onSlideChange={this.handleSlideChange}>
-          {images.map(image => (
-            <ProductImage key={image} src={image} animating={false} />
-          ))}
+          {
+            optimizedImages ?
+              optimizedImages.map(image => (
+                <ProductImage
+                  key={image.png}
+                  optimizedImages={image}
+                  src={image.png}
+                  animating={false}
+                />
+              ))
+              : images.map(image => (
+                <ProductImage key={image} src={image} animating={false} />
+              ))
+          }
         </BaseImageSlider>
       );
     }
