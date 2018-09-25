@@ -61,11 +61,6 @@ exports[`<LiveshoppingWidget /> should render the widget with a slider for multi
                 resolutions={
                   Array [
                     Object {
-                      "blur": 2,
-                      "height": 50,
-                      "width": 50,
-                    },
-                    Object {
                       "height": 440,
                       "width": 440,
                     },
@@ -160,11 +155,6 @@ exports[`<LiveshoppingWidget /> should render the widget with a slider for multi
                 ratio={null}
                 resolutions={
                   Array [
-                    Object {
-                      "blur": 2,
-                      "height": 50,
-                      "width": 50,
-                    },
                     Object {
                       "height": 440,
                       "width": 440,
@@ -290,11 +280,6 @@ exports[`<LiveshoppingWidget /> should render the widget with no slider for one 
                 ratio={null}
                 resolutions={
                   Array [
-                    Object {
-                      "blur": 2,
-                      "height": 50,
-                      "width": 50,
-                    },
                     Object {
                       "height": 440,
                       "width": 440,
