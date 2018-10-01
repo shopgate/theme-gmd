@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import ImageWidget from './index';
 
-describe.skip('<ImageWidget />', () => {
+describe('<ImageWidget />', () => {
   it('should render the ImageWidget', () => {
     const settings = {
       id: '81452',
