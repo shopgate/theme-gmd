@@ -80,7 +80,9 @@ exports[`<LiveshoppingWidget /> should render the widget with a slider for multi
               grow={0}
               shrink={1}
             >
-              <div>
+              <div
+                data-test-id="First product"
+              >
                 <Ellipsis
                   className="css-d6bxso"
                   ellipsis="..."
@@ -180,7 +182,9 @@ exports[`<LiveshoppingWidget /> should render the widget with a slider for multi
               grow={0}
               shrink={1}
             >
-              <div>
+              <div
+                data-test-id="Second product"
+              >
                 <Ellipsis
                   className="css-d6bxso"
                   ellipsis="..."
@@ -310,7 +314,9 @@ exports[`<LiveshoppingWidget /> should render the widget with no slider for one 
               grow={0}
               shrink={1}
             >
-              <div>
+              <div
+                data-test-id="First product"
+              >
                 <Ellipsis
                   className="css-d6bxso"
                   ellipsis="..."
