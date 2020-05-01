@@ -1,0 +1,52 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.14.1
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-LODASH-567746:
+    - lodash:
+        patched: '2020-05-01T04:35:31.185Z'
+    - '@shopgate/webpack > lodash':
+        patched: '2020-05-01T04:35:31.185Z'
+    - babel-plugin-lodash > lodash:
+        patched: '2020-05-01T04:35:31.185Z'
+    - css-spring > lodash:
+        patched: '2020-05-01T04:35:31.185Z'
+    - '@shopgate/engage > @shopgate/pwa-core > lodash':
+        patched: '2020-05-01T04:35:31.185Z'
+    - babel-plugin-lodash > @babel/types > lodash:
+        patched: '2020-05-01T04:35:31.185Z'
+    - '@shopgate/webpack > css-loader > lodash':
+        patched: '2020-05-01T04:35:31.185Z'
+    - '@shopgate/webpack > html-webpack-plugin > lodash':
+        patched: '2020-05-01T04:35:31.185Z'
+    - '@shopgate/engage > @shopgate/pwa-common > @virtuous/redux-persister > lodash':
+        patched: '2020-05-01T04:35:31.185Z'
+    - babel-plugin-lodash > @babel/helper-module-imports > @babel/types > lodash:
+        patched: '2020-05-01T04:35:31.185Z'
+    - '@shopgate/pwa-common > @virtuous/redux-persister > babel-plugin-lodash > lodash':
+        patched: '2020-05-01T04:35:31.185Z'
+    - '@babel/preset-env > @babel/plugin-transform-unicode-regex > @babel/helper-create-regexp-features-plugin > @babel/helper-regex > lodash':
+        patched: '2020-05-01T04:35:31.185Z'
+    - '@shopgate/pwa-common > @virtuous/redux-persister > babel-plugin-lodash > @babel/types > lodash':
+        patched: '2020-05-01T04:35:31.185Z'
+    - '@shopgate/engage > @shopgate/pwa-common > @virtuous/redux-persister > babel-plugin-lodash > lodash':
+        patched: '2020-05-01T04:35:31.185Z'
+    - '@shopgate/pwa-common > jsdom > request-promise-native > request-promise-core > lodash':
+        patched: '2020-05-01T04:35:31.185Z'
+    - '@babel/preset-env > @babel/preset-modules > @babel/plugin-transform-dotall-regex > @babel/helper-create-regexp-features-plugin > @babel/helper-regex > lodash':
+        patched: '2020-05-01T04:35:31.185Z'
+    - '@shopgate/pwa-common > @virtuous/redux-persister > babel-plugin-lodash > @babel/helper-module-imports > @babel/types > lodash':
+        patched: '2020-05-01T04:35:31.185Z'
+    - '@shopgate/engage > @shopgate/pwa-common > @virtuous/redux-persister > babel-plugin-lodash > @babel/types > lodash':
+        patched: '2020-05-01T04:35:31.185Z'
+    - '@shopgate/engage > @shopgate/pwa-common > jsdom > request-promise-native > request-promise-core > lodash':
+        patched: '2020-05-01T04:35:31.185Z'
+    - '@babel/preset-env > @babel/plugin-transform-exponentiation-operator > @babel/helper-builder-binary-assignment-operator-visitor > @babel/helper-explode-assignable-expression > @babel/traverse > @babel/generator > lodash':
+        patched: '2020-05-01T04:35:31.185Z'
+    - '@shopgate/engage > @shopgate/pwa-common > @virtuous/redux-persister > babel-plugin-lodash > @babel/helper-module-imports > @babel/types > lodash':
+        patched: '2020-05-01T04:35:31.185Z'
+    - '@babel/preset-env > @babel/plugin-transform-exponentiation-operator > @babel/helper-builder-binary-assignment-operator-visitor > @babel/helper-explode-assignable-expression > @babel/traverse > @babel/helper-split-export-declaration > @babel/types > lodash':
+        patched: '2020-05-01T04:35:31.185Z'
+    - '@babel/preset-env > @babel/plugin-transform-exponentiation-operator > @babel/helper-builder-binary-assignment-operator-visitor > @babel/helper-explode-assignable-expression > @babel/traverse > @babel/helper-function-name > @babel/template > @babel/types > lodash':
+        patched: '2020-05-01T04:35:31.185Z'
